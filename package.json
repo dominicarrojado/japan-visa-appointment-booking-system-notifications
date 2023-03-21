@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "export": "next export",
     "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch"
+    "test:watch": "jest --coverage --watch",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@types/node": "18.15.3",
@@ -28,6 +30,7 @@
     "@testing-library/react": "^14.0.0",
     "autoprefixer": "^10.4.14",
     "eslint-config-prettier": "^8.7.0",
+    "gh-pages": "^5.0.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.21",

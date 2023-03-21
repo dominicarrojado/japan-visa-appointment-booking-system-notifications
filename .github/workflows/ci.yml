@@ -1,0 +1,76 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get cache directory path
+        id: nestjs-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache dependencies and build outputs
+        uses: actions/cache@v3
+        id: nestjs-cache
+        with:
+          path: |
+            ${{ steps.nestjs-cache-dir-path.outputs.dir }}
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: ESLint check
+        run: yarn lint
+
+      - name: Run the tests
+        run: yarn test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+
+      - name: Build
+        run: yarn build
+
+      - name: Generate static files
+        run: yarn export
+
+      - name: Delete 404 page
+        run: |
+          rm ./out/404.html
+          rm -rf ./out/404
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+
+      - name: Merge gh-pages -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: gh-pages
+          target_branch: main
+          github_token: ${{ github.token }}

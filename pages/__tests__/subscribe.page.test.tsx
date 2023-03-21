@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import Unsubscribe from '..';
+import Subscribe from '../subscribe.page';
 
-describe('<Unsubscribe />', () => {
+describe('<Subscribe />', () => {
   it('should render without errors', () => {
-    const { container } = render(<Unsubscribe />);
+    const { container } = render(<Subscribe />);
 
     expect(container).toBeInTheDocument();
   });
