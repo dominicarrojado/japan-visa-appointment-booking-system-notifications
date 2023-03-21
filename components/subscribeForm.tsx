@@ -37,8 +37,8 @@ export default function SubscribeForm() {
               disabled={isLoading}
             />
             <p className="text-sm text-gray-400">
-              By submitting this form, you agree to receive these email
-              notifications and understand that you can{' '}
+              By submitting this form, you agree to receive email notifications
+              when a slot becomes available and understand that you can{' '}
               <Link
                 href={Route.UNSUBSCRIBE}
                 className="underline hover:text-gray-700"
