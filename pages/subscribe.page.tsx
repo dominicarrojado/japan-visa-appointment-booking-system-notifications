@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
+import { NextSeo } from 'next-seo';
 import ButtonLink from '@/components/buttonLink';
 import PageSubtitle from '@/components/pageSubtitle';
 import { useVerifySubscription } from '@/lib/api-hooks';
@@ -16,6 +17,7 @@ export default function Subscribe() {
 
   return (
     <>
+      <NextSeo noindex />
       {fetchState === FetchState.LOADING && (
         <>
           <PageSubtitle>Verifying subscription...</PageSubtitle>
