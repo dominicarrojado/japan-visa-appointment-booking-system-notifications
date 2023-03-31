@@ -25,3 +25,18 @@ export enum FetchState {
   NOT_FOUND = 'NOT_FOUND',
   ERROR = 'ERROR',
 }
+
+export enum GoogleAnalyticsEvent {
+  SUBSCRIBE_FORM_SUBMIT = 'subscribe_form_submit',
+  UNSUBSCRIBE_FORM_SUBMIT = 'unsubscribe_form_submit',
+}
+
+export type EventSubscribeFormSubmit = {
+  event: GoogleAnalyticsEvent.SUBSCRIBE_FORM_SUBMIT;
+  buttonText: string;
+};
+
+export type EventUnsubscribeFormSubmit = {
+  event: GoogleAnalyticsEvent.UNSUBSCRIBE_FORM_SUBMIT;
+  buttonText: string;
+};

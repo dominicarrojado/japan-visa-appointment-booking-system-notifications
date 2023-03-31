@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import { useUnsubscribe } from '@/lib/api-hooks';
-import { FetchState, Route } from '@/lib/types';
+import { trackEvent } from '@/lib/google-analytics';
+import { FetchState, GoogleAnalyticsEvent, Route } from '@/lib/types';
 import Button, { ButtonVariant } from './button';
 import ButtonLink from './buttonLink';
 import ButtonLoader from './buttonLoader';
@@ -11,6 +12,7 @@ import FormError from './formError';
 import Input from './input';
 
 export default function UnsubscribeForm() {
+  const submitText = 'Proceed';
   const [fetchState, unsubscribe] = useUnsubscribe();
   const isLoading = fetchState === FetchState.LOADING;
   const formOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,6 +21,11 @@ export default function UnsubscribeForm() {
     const formEl = e.currentTarget as HTMLFormElement;
 
     unsubscribe(formEl.email.value);
+
+    trackEvent({
+      event: GoogleAnalyticsEvent.UNSUBSCRIBE_FORM_SUBMIT,
+      buttonText: submitText,
+    });
   };
 
   return (
@@ -45,7 +52,7 @@ export default function UnsubscribeForm() {
             )}
             <Button type="submit" disabled={isLoading}>
               {isLoading && <ButtonLoader />}
-              Proceed
+              {submitText}
             </Button>
             <Link href={Route.HOME} passHref legacyBehavior>
               <ButtonLink variant={ButtonVariant.SECONDARY}>Go Home</ButtonLink>

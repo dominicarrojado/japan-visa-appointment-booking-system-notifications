@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useSubmitSubscribeRequest } from '@/lib/api-hooks';
-import { FetchState, Route } from '@/lib/types';
+import { trackEvent } from '@/lib/google-analytics';
+import { FetchState, GoogleAnalyticsEvent, Route } from '@/lib/types';
 import Button from './button';
 import ButtonLoader from './buttonLoader';
 import Form from './form';
@@ -10,6 +11,7 @@ import FormError from './formError';
 import Input from './input';
 
 export default function SubscribeForm() {
+  const submitText = 'Subscribe Now';
   const [fetchState, submitSubscriptionRequest] = useSubmitSubscribeRequest();
   const [submittedEmail, setSubmittedEmail] = useState('');
   const isLoading = fetchState === FetchState.LOADING;
@@ -21,6 +23,11 @@ export default function SubscribeForm() {
 
     submitSubscriptionRequest(email);
     setSubmittedEmail(email);
+
+    trackEvent({
+      event: GoogleAnalyticsEvent.SUBSCRIBE_FORM_SUBMIT,
+      buttonText: submitText,
+    });
   };
 
   return (
@@ -55,7 +62,7 @@ export default function SubscribeForm() {
             <div>
               <Button type="submit" disabled={isLoading}>
                 {isLoading && <ButtonLoader />}
-                Subscribe Now
+                {submitText}
               </Button>
             </div>
           </>
