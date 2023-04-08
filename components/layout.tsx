@@ -3,6 +3,8 @@ import Footer from './footer';
 import PageBody from './pageBody';
 import PageTitle from './pageTitle';
 import SvgGraphs from './svgGraphs';
+import AdUnit from './adUnit';
+import { GoogleAdSenseUnitFormat, GoogleAdSenseUnitSlot } from '@/lib/types';
 
 type Props = {
   children: ReactNode;
@@ -15,11 +17,19 @@ export default function Layout({ children }: Props) {
         <SvgGraphs />
       </div>
       <main className="mx-auto max-w-xl">
+        <AdUnit
+          adSlot={GoogleAdSenseUnitSlot.PROJECT_HEADER}
+          adFormat={GoogleAdSenseUnitFormat.FLUID}
+        />
         <PageTitle>
           Embassy of Japan in Singapore Visa Appointment Notification Service
           for Visa (Tourism) applications
         </PageTitle>
         <PageBody>{children}</PageBody>
+        <AdUnit
+          adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
+          adFormat={GoogleAdSenseUnitFormat.FLUID}
+        />
       </main>
       <Footer className="mt-10" />
     </div>

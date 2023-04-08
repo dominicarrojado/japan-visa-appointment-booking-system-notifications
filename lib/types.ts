@@ -31,6 +31,15 @@ export enum GoogleAnalyticsEvent {
   UNSUBSCRIBE_FORM_SUBMIT = 'unsubscribe_form_submit',
 }
 
+export enum GoogleAdSenseUnitSlot {
+  PROJECT_HEADER = '2299922139',
+  PROJECT_FOOTER = '3221836158',
+}
+
+export enum GoogleAdSenseUnitFormat {
+  FLUID = 'fluid',
+}
+
 export type EventSubscribeFormSubmit = {
   event: GoogleAnalyticsEvent.SUBSCRIBE_FORM_SUBMIT;
   buttonText: string;

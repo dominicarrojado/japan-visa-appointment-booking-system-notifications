@@ -11,3 +11,5 @@ export const MAIN_PATH =
 export const MAIN_URL = `${MAIN_ORIGIN}${MAIN_PATH}`;
 
 export const API_URL = 'https://api.dominicarrojado.com';
+
+export const GOOGLE_ADSENSE_CLIENT_ID = 'ca-pub-3632473845121107';
