@@ -40,6 +40,7 @@ export default function UnsubscribeForm() {
               id="email"
               autoComplete="email"
               disabled={isLoading}
+              required
             />
             <p className="text-sm">
               By submitting this form, you will no longer receive email

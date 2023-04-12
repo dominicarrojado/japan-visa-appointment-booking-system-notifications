@@ -42,6 +42,7 @@ export default function SubscribeForm() {
               id="email"
               autoComplete="email"
               disabled={isLoading}
+              required
             />
             <p className="text-sm text-gray-400">
               By submitting this form, you agree to receive email notifications
