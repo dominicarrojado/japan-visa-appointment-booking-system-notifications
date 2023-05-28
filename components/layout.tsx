@@ -20,6 +20,7 @@ export default function Layout({ children }: Props) {
         <AdUnit
           adSlot={GoogleAdSenseUnitSlot.PROJECT_HEADER}
           adFormat={GoogleAdSenseUnitFormat.FLUID}
+          className="mb-8"
         />
         <PageTitle>
           Embassy of Japan in Singapore Visa Appointment Notification Service
@@ -29,6 +30,7 @@ export default function Layout({ children }: Props) {
         <AdUnit
           adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
           adFormat={GoogleAdSenseUnitFormat.FLUID}
+          className="mt-8"
         />
       </main>
       <Footer className="mt-10" />
