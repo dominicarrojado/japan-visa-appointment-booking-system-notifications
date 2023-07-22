@@ -24,7 +24,7 @@ export default function Home() {
         agency fees to do it for you. I knew there had to be a better way, so I
         created a service that could automatically monitor the embassy&apos;s
         website and notify me when a slot became available. And now, I&apos;m
-        sharing this script with you.
+        sharing this service with you.
       </p>
       <p>
         To get started, simply provide your email address and the service will
