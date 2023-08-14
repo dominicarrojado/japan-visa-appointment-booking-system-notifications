@@ -1,9 +1,11 @@
 import { ExternalUrl } from '@/lib/types';
 import SubscribeForm from '@/components/subscribeForm';
+import LastAvailableSlotsInfo from '@/components/lastAvailableSlotsInfo';
 
 export default function Home() {
   return (
     <>
+      <LastAvailableSlotsInfo />
       <p>
         Are you tired of constantly checking the Embassy of Japan in Singapore
         website for an available visa appointment slot for visa (tourism)

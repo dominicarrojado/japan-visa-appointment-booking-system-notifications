@@ -16,6 +16,7 @@ export enum ApiEndpoint {
   SUBSCRIPTION_REQUESTS = '/subscription-requests',
   SUBSCRIPTION_REQUEST_VERIFY = '/subscription-requests/:id/verify',
   SUBSCRIPTION = '/subscriptions/contact-mode/:contact-mode/topics/:topic',
+  LAST_AVAILABLE_SLOTS_INFO = '/japan-visa-checker/last-available-slots-info',
 }
 
 export enum FetchState {

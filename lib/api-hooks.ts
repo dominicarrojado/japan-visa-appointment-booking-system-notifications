@@ -85,3 +85,37 @@ export function useUnsubscribe() {
 
   return [fetchState, unsubscribe] as const;
 }
+
+export function useGetLastAvailableSlotsDate() {
+  const [lastAvailableSlotsDate, setLastAvailableSlotsDate] = useState(
+    '----------------------'
+  );
+  const getLastAvailableSlotsDate = async (): Promise<boolean> => {
+    try {
+      const axios = (await import('axios')).default;
+      const res = await axios.get(
+        `${API_URL}${ApiEndpoint.LAST_AVAILABLE_SLOTS_INFO}`
+      );
+
+      if (res.data && res.data.updatedAt) {
+        const date = new Date(res.data.updatedAt);
+        const formattedDate = new Intl.DateTimeFormat('en-GB', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        }).format(date);
+
+        setLastAvailableSlotsDate(formattedDate);
+      }
+
+      return true;
+    } catch (err) {
+      return false;
+    }
+  };
+
+  return [lastAvailableSlotsDate, getLastAvailableSlotsDate] as const;
+}
