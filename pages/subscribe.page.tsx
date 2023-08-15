@@ -3,8 +3,14 @@ import React, { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import ButtonLink from '@/components/buttonLink';
 import PageSubtitle from '@/components/pageSubtitle';
+import AdUnit from '@/components/adUnit';
 import { useVerifySubscription } from '@/lib/api-hooks';
-import { FetchState, Route } from '@/lib/types';
+import {
+  FetchState,
+  GoogleAdSenseUnitFormat,
+  GoogleAdSenseUnitSlot,
+  Route,
+} from '@/lib/types';
 
 export default function Subscribe() {
   const [fetchState, verifySubscription] = useVerifySubscription();
@@ -68,6 +74,11 @@ export default function Subscribe() {
           </p>
         </>
       )}
+      <AdUnit
+        adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
+        adFormat={GoogleAdSenseUnitFormat.FLUID}
+        className="mt-8"
+      />
     </>
   );
 }

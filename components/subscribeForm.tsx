@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import cn from 'classnames';
 import { useSubmitSubscribeRequest } from '@/lib/api-hooks';
+import { useIsCookieBannerClosed } from '@/lib/custom-hooks';
 import { trackEvent } from '@/lib/google-analytics';
 import { FetchState, GoogleAnalyticsEvent, Route } from '@/lib/types';
 import Button from './button';
@@ -13,6 +15,7 @@ import Input from './input';
 export default function SubscribeForm() {
   const submitText = 'Subscribe Now';
   const [fetchState, submitSubscriptionRequest] = useSubmitSubscribeRequest();
+  const isCookieBannerClosed = useIsCookieBannerClosed();
   const [submittedEmail, setSubmittedEmail] = useState('');
   const isLoading = fetchState === FetchState.LOADING;
   const formOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +34,13 @@ export default function SubscribeForm() {
   };
 
   return (
-    <Form className="sticky bottom-6" onSubmit={formOnSubmit}>
+    <Form
+      className={cn(
+        'sticky transition-all duration-500 delay-700',
+        isCookieBannerClosed ? 'bottom-6' : 'bottom-32 xl:bottom-6'
+      )}
+      onSubmit={formOnSubmit}
+    >
       <FormBody>
         {fetchState !== FetchState.SUCCESS ? (
           <>

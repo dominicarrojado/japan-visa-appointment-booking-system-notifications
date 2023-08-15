@@ -17,21 +17,11 @@ export default function Layout({ children }: Props) {
         <SvgGraphs />
       </div>
       <main className="mx-auto max-w-xl">
-        <AdUnit
-          adSlot={GoogleAdSenseUnitSlot.PROJECT_HEADER}
-          adFormat={GoogleAdSenseUnitFormat.FLUID}
-          className="mb-8"
-        />
         <PageTitle>
           Embassy of Japan in Singapore Visa Appointment Notification Service
           for Visa (Tourism) applications
         </PageTitle>
         <PageBody>{children}</PageBody>
-        <AdUnit
-          adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
-          adFormat={GoogleAdSenseUnitFormat.FLUID}
-          className="mt-8"
-        />
       </main>
       <Footer className="mt-10" />
     </div>

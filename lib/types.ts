@@ -33,7 +33,7 @@ export enum GoogleAnalyticsEvent {
 }
 
 export enum GoogleAdSenseUnitSlot {
-  PROJECT_HEADER = '2299922139',
+  PROJECT_BODY = '2574409710',
   PROJECT_FOOTER = '3221836158',
 }
 

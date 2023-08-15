@@ -1,7 +1,12 @@
 import { NextSeo } from 'next-seo';
-import UnsubscribeForm from '@/components/unsubscribeForm';
 import { getMetaTitle, getRouteCanonical } from '@/lib/meta';
-import { Route } from '@/lib/types';
+import UnsubscribeForm from '@/components/unsubscribeForm';
+import AdUnit from '@/components/adUnit';
+import {
+  GoogleAdSenseUnitFormat,
+  GoogleAdSenseUnitSlot,
+  Route,
+} from '@/lib/types';
 
 export default function Unsubscribe() {
   const metaUrl = getRouteCanonical(Route.UNSUBSCRIBE);
@@ -19,6 +24,11 @@ export default function Unsubscribe() {
         below and confirm. Thank you for your interest in my content.
       </p>
       <UnsubscribeForm />
+      <AdUnit
+        adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
+        adFormat={GoogleAdSenseUnitFormat.FLUID}
+        className="mt-8"
+      />
     </>
   );
 }

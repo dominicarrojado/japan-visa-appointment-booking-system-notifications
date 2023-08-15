@@ -87,35 +87,43 @@ export function useUnsubscribe() {
 }
 
 export function useGetLastAvailableSlotsDate() {
+  const [fetchState, setFetchState] = useState(FetchState.DEFAULT);
   const [lastAvailableSlotsDate, setLastAvailableSlotsDate] = useState(
     '----------------------'
   );
-  const getLastAvailableSlotsDate = async (): Promise<boolean> => {
+  const getLastAvailableSlotsDate = async () => {
     try {
+      setFetchState(FetchState.LOADING);
+
       const axios = (await import('axios')).default;
       const res = await axios.get(
         `${API_URL}${ApiEndpoint.LAST_AVAILABLE_SLOTS_INFO}`
       );
 
-      if (res.data && res.data.updatedAt) {
-        const date = new Date(res.data.updatedAt);
-        const formattedDate = new Intl.DateTimeFormat('en-GB', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          hour12: true,
-        }).format(date);
-
-        setLastAvailableSlotsDate(formattedDate);
+      if (!res.data || !res.data.updatedAt) {
+        throw new Error('No data');
       }
 
-      return true;
+      const date = new Date(res.data.updatedAt);
+      const formattedDate = new Intl.DateTimeFormat('en-GB', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      }).format(date);
+
+      setLastAvailableSlotsDate(formattedDate);
+      setFetchState(FetchState.SUCCESS);
     } catch (err) {
-      return false;
+      setFetchState(FetchState.ERROR);
     }
   };
 
-  return [lastAvailableSlotsDate, getLastAvailableSlotsDate] as const;
+  return [
+    fetchState,
+    lastAvailableSlotsDate,
+    getLastAvailableSlotsDate,
+  ] as const;
 }

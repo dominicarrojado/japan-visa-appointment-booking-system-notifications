@@ -1,6 +1,11 @@
-import { ExternalUrl } from '@/lib/types';
 import SubscribeForm from '@/components/subscribeForm';
 import LastAvailableSlotsInfo from '@/components/lastAvailableSlotsInfo';
+import AdUnit from '@/components/adUnit';
+import {
+  ExternalUrl,
+  GoogleAdSenseUnitFormat,
+  GoogleAdSenseUnitSlot,
+} from '@/lib/types';
 
 export default function Home() {
   return (
@@ -19,6 +24,11 @@ export default function Home() {
         visa applications, and sends out email notifications to my subscribers
         the moment a slot becomes available.
       </p>
+      <AdUnit
+        adSlot={GoogleAdSenseUnitSlot.PROJECT_BODY}
+        adFormat={GoogleAdSenseUnitFormat.FLUID}
+        className="my-4"
+      />
       <p>
         I created this service because I had the same problem when applying for
         my Japan tourist visa. The embassy had turned off the waitlist feature,
@@ -53,6 +63,11 @@ export default function Home() {
         . <br />
         Thank you!
       </p>
+      <AdUnit
+        adSlot={GoogleAdSenseUnitSlot.PROJECT_FOOTER}
+        adFormat={GoogleAdSenseUnitFormat.FLUID}
+        className="mt-8"
+      />
     </>
   );
 }
