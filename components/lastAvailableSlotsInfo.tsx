@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import cn from 'classnames';
 import Alert from './alert';
+import AlertSkeleton from './alertSkeleton';
 import { useGetLastAvailableSlotsDate } from '@/lib/api-hooks';
 import { FetchState } from '@/lib/types';
 
@@ -14,16 +14,17 @@ export default function LastAvailableSlotsInfo() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return fetchState !== FetchState.ERROR ? (
+  if (fetchState === FetchState.ERROR) {
+    return null;
+  }
+
+  return (
     <Alert>
-      <div
-        className={cn(
-          'transition-opacity duration-300',
-          fetchState !== FetchState.SUCCESS ? 'opacity-0' : 'opacity-100'
-        )}
-      >
-        Last available slots were spotted on {lastAvailableSlotsDate}.
-      </div>
+      {fetchState !== FetchState.SUCCESS ? (
+        <AlertSkeleton />
+      ) : (
+        `Last available slots were spotted on ${lastAvailableSlotsDate}.`
+      )}
     </Alert>
-  ) : null;
+  );
 }

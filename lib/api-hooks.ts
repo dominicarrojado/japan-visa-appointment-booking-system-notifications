@@ -88,9 +88,7 @@ export function useUnsubscribe() {
 
 export function useGetLastAvailableSlotsDate() {
   const [fetchState, setFetchState] = useState(FetchState.DEFAULT);
-  const [lastAvailableSlotsDate, setLastAvailableSlotsDate] = useState(
-    '----------------------'
-  );
+  const [lastAvailableSlotsDate, setLastAvailableSlotsDate] = useState('');
   const getLastAvailableSlotsDate = async () => {
     try {
       setFetchState(FetchState.LOADING);
