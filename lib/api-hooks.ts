@@ -109,7 +109,7 @@ export function useGetLastAvailableSlotsDate() {
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
-        hour12: true,
+        hourCycle: 'h12',
       }).format(date);
 
       setLastAvailableSlotsDate(formattedDate);
