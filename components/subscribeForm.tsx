@@ -21,30 +21,37 @@ export default function SubscribeForm() {
   const formOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formEl = e.target as HTMLFormElement;
-    const email = formEl.email.value;
+    // const formEl = e.target as HTMLFormElement;
+    // const email = formEl.email.value;
 
-    submitSubscriptionRequest(email);
-    setSubmittedEmail(email);
+    // submitSubscriptionRequest(email);
+    // setSubmittedEmail(email);
 
-    trackEvent({
-      event: GoogleAnalyticsEvent.SUBSCRIBE_FORM_SUBMIT,
-      buttonText: submitText,
-    });
+    // trackEvent({
+    //   event: GoogleAnalyticsEvent.SUBSCRIBE_FORM_SUBMIT,
+    //   buttonText: submitText,
+    // });
   };
 
   return (
     <Form
-      className={cn(
-        'sticky transition-all duration-500 delay-700',
-        isCookieBannerClosed ? 'bottom-6' : 'bottom-32 xl:bottom-6'
-      )}
+      className={cn('sticky transition-all duration-500 delay-700 bottom-6')}
       onSubmit={formOnSubmit}
     >
       <FormBody>
         {fetchState !== FetchState.SUCCESS ? (
           <>
-            <Input
+            <p>
+              <b className="font-medium">
+                Japan Visa Appointment Notification Service
+              </b>{' '}
+              has now been migrated to <b className="font-medium">SG Alerts</b>.
+              To sign up for notifications, please visit the new website.
+            </p>
+            <a href="https://dominicarrojado.com/sg-alerts/">
+              <Button>Go to SG Alerts</Button>
+            </a>
+            {/* <Input
               label="Email Address"
               type="email"
               name="email"
@@ -74,7 +81,7 @@ export default function SubscribeForm() {
                 {isLoading && <ButtonLoader />}
                 {submitText}
               </Button>
-            </div>
+            </div> */}
           </>
         ) : (
           <p>
