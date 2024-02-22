@@ -95,14 +95,14 @@ export function useGetLastAvailableSlotsDate() {
 
       const axios = (await import('axios')).default;
       const res = await axios.get(
-        `${API_URL}${ApiEndpoint.LAST_AVAILABLE_SLOTS_INFO}`
+        `${API_URL}${ApiEndpoint.SLOTS_LAST_AVAILABLE_DATES}`
       );
 
-      if (!res.data || !res.data.updatedAt) {
+      if (!res.data || !res.data.tourism) {
         throw new Error('No data');
       }
 
-      const date = new Date(res.data.updatedAt);
+      const date = new Date(res.data.tourism);
       const formattedDate = new Intl.DateTimeFormat('en-GB', {
         year: 'numeric',
         month: 'long',
